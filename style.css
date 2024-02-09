@@ -1,0 +1,105 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: antiquewhite;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.calcContainer{
+    width: 340px;
+    height: 500px;
+    border-radius: 10px;
+    padding: 0 14px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    background-color: rgb(108, 108, 108);
+}
+
+.display{
+    border-radius: 10px;
+    width: 100%;
+    height: 20%;
+    margin-top: 18px;
+
+    font-size: 50px;
+    display: flex;
+    justify-content: end;
+    color: white;
+}
+
+.buttons{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px; 
+    padding-bottom: 10px;
+}
+
+.row{
+    flex: 1;
+    display: flex;
+    gap: 4px;
+}
+
+.row button{
+    flex: 1;
+
+    border-radius: 5px;
+    font-size: 24px;
+    border-style: none;
+    transition: background-color 0.3s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row button.zero{
+    min-width: 170px;
+}
+
+.row button{
+    color: white;
+    background-color: rgb(138, 138, 138);
+}
+
+.row button.darker{
+    background-color: rgb(63, 63, 63);
+}
+
+.row button.orange{
+    background-color: orange;
+}
+
+.row button:hover{
+    background-color: rgb(144, 144, 144);
+}
+
+.row button:active{
+    background-color: rgb(197, 197, 197);
+}
+
+.row button.darker:hover{
+    background-color: rgb(84, 84, 84);
+}
+
+.row button.darker:active{
+    background-color: rgb(95, 95, 95);
+}
+
+.row button.orange:hover{
+    background-color:rgb(255, 188, 62);
+}
+
+.row button.orange:active{
+    background-color:rgb(254, 201, 102);
+}
+

@@ -1,11 +1,28 @@
 body{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    gap: 30px;
+
     align-items: center;
     height: 100vh;
     box-sizing: border-box;
     background-color: antiquewhite;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.author{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.author p{
+    margin: 0;
+    padding: 0;
+    color: darkslategrey;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .calcContainer{

@@ -1,95 +1,152 @@
+//select and make the display accesable
+const displayDiv = document.querySelector('.display');
+const display = document.createElement('p');
+display.classList.add('displayText')
+displayDiv.append(display)
 
-const display = document.querySelector('.display');
+const acBtn = document.querySelector('#AC');
+const signBtn = document.querySelector('#sign');
+const percentageBtn = document.querySelector('#percentage')
+const pointBtn = document.querySelector(`#dot`)
+
+
 const numberBtns = document.querySelectorAll('.number');
-const displayContent = document.createElement('p');
-    display.append(displayContent);
-
-
-const operatorBtns = document.querySelectorAll('.operator')
 const equalBtn = document.querySelector('#equal');
-let firstNumber = null,
+const operatorsBtns = document.querySelectorAll('.operator')
+
+let operator = null;
+let firstArg = null;
+let secondArg = null;
+let result = null;
+
+
+function getDisplayNumber(){
+    return parseFloat(display.innerText)
+}
+
+function clearDisplay(){
+    display.innerText = '';
+}
+
+function clearVariables(){
     operator = null;
+    firstArg = null;
+    secondArg = null;
+    result = null;
+}
 
-
-function renderToScreen(number) {
-    if (displayContent.innerText === '0') {
-        displayContent.innerText = number;
-    } else {
-        displayContent.innerText += number;
+function renderToDisplay(element){
+    if ( getDisplayNumber() !== 0 || display.innerText.includes('.')){
+        parseFloat(display.innerText += element);
+    } else{
+        parseFloat(display.innerText = element);
     }
 }
 
-function getNumber(){
-    return parseInt(displayContent.innerText);
+function makePercentage(){
+    tempNum = parseFloat(display.innerText) /100
+    clearDisplay()
+    renderToDisplay(tempNum)
 }
 
-operatorBtns.forEach(button =>{
-    button.addEventListener('click', () => {
-        firstNumber = getNumber(); 
-        displayContent.innerText = '';
-        console.log(firstNumber)
-        renderToScreen('');
-        operator = button.textContent
-        return firstNumber,operator;
-    })
+
+
+
+acBtn.addEventListener('click', () =>{
+    clearDisplay();
+    renderToDisplay(0)
+})
+
+signBtn.addEventListener('click', () =>{
+
+    let tempNum = getDisplayNumber();
+    console.log(tempNum)
+    clearDisplay();
+
+    if (tempNum > 0){
+        renderToDisplay(tempNum * -1)
+    } else if (tempNum < 0){
+        renderToDisplay(tempNum * -1)
+    } else{
+        renderToDisplay(0)
+    }
+})
+
+percentageBtn.addEventListener('click', () =>{
+    makePercentage();
+})
+
+pointBtn.addEventListener('click', () =>{
+    display.innerText += '.';
 })
 
 numberBtns.forEach(button =>{
     button.addEventListener('click', () => {
-        renderToScreen(button.textContent);
+        renderToDisplay(button.textContent);
     })
 })
 
-equalBtn.addEventListener('click', () => {
-    const secondNumber = getNumber();
-    console.log(firstNumber,secondNumber)
-    let result;
+operatorsBtns.forEach(button =>{
+    button.addEventListener('click', () => {
+
+        firstArg = getDisplayNumber();
+        if (firstArg != 0){
+            clearDisplay();
+            operator = button.textContent;
+        } else {
+            renderToDisplay(0)
+        } return operator
+
+        return firstArg, operator
+    })
+}) 
+
+
+function getResult(){
+    secondArg = getDisplayNumber();
+    console.log('first arg', firstArg, 'second arg', secondArg)
+    console.log('operator', operator)
+
     switch(operator){
         case '+':
-            result = firstNumber + secondNumber;
-            break
+            result = firstArg + secondArg;
+            console.log('result',result)
+            clearDisplay();
+            renderToDisplay(result);
+            clearVariables();
+            break;
         case '-':
-            result = firstNumber - secondNumber;
+            result = firstArg - secondArg;
+            console.log('result',result)
+            clearDisplay();
+            renderToDisplay(result);
+            clearVariables();
             break;
         case '*':
-            result = firstNumber * secondNumber;
+            result = firstArg * secondArg;
+            console.log('result',result)
+            clearDisplay();
+            renderToDisplay(result);
+            clearVariables();
             break;
         case '/':
-            result = firstNumber / secondNumber;
+            result = firstArg / secondArg;
+            console.log('result',result)
+            clearDisplay();
+            renderToDisplay(result);
+            clearVariables();
             break;
         default:
-            result = 'ERROR'
-            break
-    }
-    displayContent.innerText = result;
-    firstNumber = result;
-});
-
-
-
-//funciones logicas
-function add(a,b){
-    return a + b;
+            clearDisplay();
+            renderToDisplay('ERROR');
+    }   
+    
 }
 
-function subtract(a,b){
-    return a - b;
-}
-
-function multiply(a,b){
-    return a * b
-}
-
-function divide(a,b){
-    return a / b
-}
-
-//operate the calculator
-function operate(numberOne,numberTwo){
-
-}
+equalBtn.addEventListener('click', () =>{
+    getResult()
+})
 
 
-//default
-renderToScreen(0);
 
+renderToDisplay(0)
